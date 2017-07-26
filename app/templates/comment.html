@@ -1,0 +1,21 @@
+<div class="col-sm-12" style ='background-color: #ccffcc;'>
+    <h4 class="'lead">评论详情</h4>
+        {% for comment in article_comment %}
+            **{{ comment.article_id }}
+            **{{ comment.user }}
+            **{{ comment.username }}
+            **{{ comment.content }}
+            **{{ comment.article_desc }}
+            **{{ comment.date_publish | date:'Y-m-d' }}<br>
+        {% endfor %}
+    <hr>
+    <form action="{% url 'comment' %}" method="POST">
+        {% csrf_token %}
+        <li>你的点评：</li>
+        <span class="'user-nickname">姓名：{{ comment_form.user }}</span>
+{#        <time class="time">{{ comment_form.created_time }}</time>#}
+        <div class="comment-content">点评：{{ comment_form.content }}</div>
+        <button type="submit">评论</button>
+    </form>
+    <hr>
+</div>
